@@ -64,6 +64,7 @@ def csvImport():
     print(AssetsToAdd)
 
     for line in AssetsToAdd:
+        line = line.strip()    
         Assets = line.split(",")
         print(Assets)
         Assetslist.append(Assets)
@@ -92,7 +93,33 @@ def searchHostname():
             print(row)
             print("")
     except Exception as e:
-        print(e)    
+        print(e)
+
+def searchAll():
+    print("Hostname")
+    print("AssetTag")
+    print("Description")
+    print("DeviceType")
+    print("CurrentUser")
+    print("Department")
+    print("CostCentre")
+    print("CostCode")
+    print("PurchaseDate")
+    print("Status")    
+    searchQuery = input("Select a query field from above: ")
+    searchValue = input("Enter the value to search: ")
+    sqlquery = "SELECT * FROM AssetRegister WHERE " + searchQuery + "='" + searchValue + "'"
+    print("")
+    print("SQL Query = " + sqlquery)
+    try:
+        result = cur.execute(sqlquery).fetchall()
+        for row in result:
+            print ("")   
+            print(row)
+            print("")
+    except Exception as e:
+        print(e)
+    
 
 def finish():
     
@@ -103,11 +130,13 @@ def finish():
 selection = 10
 
 while selection != 0:
+    print("Asset Register Menu")
+    print("")
     print("1 - Manual inport")
     print("2 - CSV Import")
-    print("3 - Hostname Search")
+    print("3 - Search")
     print("0 - Exit")
-    
+    print("")
     selection = int(input("Please choose a process: "))
         
     if selection == 1:
@@ -115,7 +144,7 @@ while selection != 0:
     if selection == 2:
         csvImport()
     if selection == 3:
-        searchHostname()    
+        searchAll()    
     if selection == 0:
         finish()
 
