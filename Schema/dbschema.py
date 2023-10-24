@@ -1,17 +1,7 @@
 import pyodbc
 connectionString = r'DRIVER={ODBC Driver 13 for SQL Server};Server=DV00484\SQLEXPRESS;UID=andyt;PWD=dbpassword;'
 conn = pyodbc.connect(connectionString) # connects to the db using the above connection string
-cur = conn.cursor() # This manages the command that we want to send - cursor = invoke-command
-
-
-# CREATE TABLE statement
-
-# CREATE TABLE table_name (
-#    column1 datatype constraint,
-#    column2 datatype constraint,
-#    column3 datatype constraint,
-#   ....
-#); 
+cur = conn.cursor() # This manages the command that we want to send
 
 print("Dropping table")
 dropstring = "DROP TABLE AssetRegister"
@@ -22,6 +12,5 @@ sqlstring = "CREATE TABLE AssetRegister ( Hostname nvarchar(10) NOT NULL PRIMARY
 cur.execute(sqlstring)
 
 conn.commit()
-
 
 conn.close()
