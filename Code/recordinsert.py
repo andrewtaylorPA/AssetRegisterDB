@@ -58,7 +58,7 @@ def csvImport():
     
     Assetslist = []
 
-    AssetsFile = open("C:/Users/andyt/QAUnit/AssetRegisterDB/Assets.csv")
+    AssetsFile = open("C:/Users/andyt/QAUnit/AssetRegisterDB/Data/Assets.csv")
     AssetsToAdd = AssetsFile.readlines()
     AssetsFile.close()
     print(AssetsToAdd)
