@@ -82,23 +82,40 @@ def csvImport():
     print("")
     print("CSV Import Success")
     print("")
-    
+
+def searchHostname():
+    Hostname = input("Enter a hostname to search: ")
+    sqlquery = "SELECT * FROM AssetRegister WHERE Hostname='" + Hostname + "'"
+    try:
+        result = cur.execute(sqlquery).fetchall()
+        for row in result:
+            print(row)
+            print("")
+    except Exception as e:
+        print(e)    
+
 def finish():
     
-    return "Exiting"    
+    return "Exiting"
+
+
 
 selection = 10
 
 while selection != 0:
     print("1 - Manual inport")
     print("2 - CSV Import")
+    print("3 - Hostname Search")
     print("0 - Exit")
+    
     selection = int(input("Please choose a process: "))
         
     if selection == 1:
         recordManual()
     if selection == 2:
         csvImport()
+    if selection == 3:
+        searchHostname()    
     if selection == 0:
         finish()
 
